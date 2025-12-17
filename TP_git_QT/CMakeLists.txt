@@ -12,6 +12,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
+include_directories("D:/Connector/mariadb/include")
+link_directories("D:/Connector/mariadb")
+
 set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
@@ -42,7 +45,7 @@ else()
     endif()
 endif()
 
-target_link_libraries(TP_git_QT PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(TP_git_QT PRIVATE Qt${QT_VERSION_MAJOR}::Widgets mariadbcpp)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
@@ -57,6 +60,7 @@ set_target_properties(TP_git_QT PROPERTIES
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
 )
+
 
 include(GNUInstallDirs)
 install(TARGETS TP_git_QT
