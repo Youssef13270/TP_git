@@ -34,6 +34,7 @@ private:
     QWidget *fenetre;
     QLabel *lab;
     QTableWidget *t;
+    int compteur;
 
 };
 

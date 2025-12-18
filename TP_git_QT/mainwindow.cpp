@@ -81,11 +81,6 @@ void MainWindow::onConnexionClicked()
                 nouvellefenetre(res);
 
 
-
-
-
-
-
             } else {
                 QMessageBox::warning(this, "Erreur", "Login ou mot de passe incorrect");
                 cout << "Échec d'authentification" << endl;
@@ -122,30 +117,30 @@ QLabel * MainWindow::getLabel(){
 void MainWindow::nouvellefenetre(sql::ResultSet* res){
     fenetre = new QWidget();
     t = new QTableWidget(fenetre);
-    t->setRowCount(res->getFetchSize());
+
+
+
+    t->setRowCount(20);
     t->setColumnCount(2);
 
     QString a ;
     lab =new QLabel(fenetre);
 
     this->hide();
-    cout<<"testr code"<<endl;
+    int i=0;
     while (res->next()) {
-        int j=0;
-        int i=0;
+
         QString id;
         QString prenom;
         id=(res->getString("id")) ;
         prenom=(res->getString("prenom"));
 
-        string b;
-        string idl= id.toStdString();
-
-
-        t->setItem( i,j, new QTableWidgetItem(id,i));
-        t->setItem( i,j, new QTableWidgetItem(prenom(i));
-        i++;
-        j++;
+        QTableWidgetItem *item1 = new QTableWidgetItem(id);
+        t->setItem(i, 0, item1);
+        QTableWidgetItem *item2 = new QTableWidgetItem(prenom);
+        t->setItem(i, 1, item2);
+        i=i+1;
+        cout<<i;
         cout << "id : " << res->getString("id") << endl;
         cout << "prenom : " << res->getString("prenom") << endl;
         //a = res->getString("prenom");
