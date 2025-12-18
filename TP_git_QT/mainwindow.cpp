@@ -124,6 +124,9 @@ void MainWindow::nouvellefenetre(sql::ResultSet* res){
 
     t->setRowCount(13);
     t->setColumnCount(2);
+    QStringList name;
+    name << "ID" << "Prenom" << "Name";
+    t->setHorizontalHeaderLabels(name);
 
     QString a ;
     lab =new QLabel(fenetre);
@@ -138,11 +141,11 @@ void MainWindow::nouvellefenetre(sql::ResultSet* res){
         prenom=(res->getString("prenom"));
 
         QTableWidgetItem *item1 = new QTableWidgetItem(id);
+
         t->setItem(i, 0, item1);
         QTableWidgetItem *item2 = new QTableWidgetItem(prenom);
         t->setItem(i, 1, item2);
         i=i+1;
-        cout<<i;
         cout << "id : " << res->getString("id") << endl;
         cout << "prenom : " << res->getString("prenom") << endl;
         //a = res->getString("prenom");
