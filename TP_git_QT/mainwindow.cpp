@@ -117,10 +117,12 @@ QLabel * MainWindow::getLabel(){
 void MainWindow::nouvellefenetre(sql::ResultSet* res){
     fenetre = new QWidget();
     t = new QTableWidget(fenetre);
+    fenetre->setGeometry(600,600,600,600);
+    t->setGeometry(200,100,250,425);
 
 
 
-    t->setRowCount(20);
+    t->setRowCount(13);
     t->setColumnCount(2);
 
     QString a ;
