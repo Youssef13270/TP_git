@@ -25,6 +25,8 @@ private:
     QLineEdit *log;
     QLineEdit *mdp;
     QPushButton *bConnexion;
+    QWidget *fenetre;
+
 };
 
 #endif // MAINWINDOW_H

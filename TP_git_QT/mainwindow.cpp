@@ -2,15 +2,13 @@
 #include "./ui_mainwindow.h"
 #include <mariadb/conncpp.hpp>
 #include <iostream>
-#include <string>
 #include <QWidget>
 #include <QMessageBox>
 
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
@@ -19,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     log->setPlaceholderText("Login");
     log->setGeometry(50, 50, 200, 30);
 
-    fenetre = new QWidget(,this);
+
 
     mdp = new QLineEdit("", this);
     mdp->setPlaceholderText("Mot de passe");
@@ -73,6 +71,8 @@ void MainWindow::onConnexionClicked()
             if (count > 0) {
                 QMessageBox::information(this, "Succès", "Connexion réussie!");
                 cout << "Utilisateur authentifié" << endl;
+                fenetre = new QWidget(this);
+                pstmt = conn->prepareStatement("SELECT id, prenom FROM bts_ciel2");
 
 
             } else {
