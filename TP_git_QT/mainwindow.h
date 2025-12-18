@@ -4,6 +4,9 @@
 #include <QMainWindow>
 #include <QLineEdit>
 #include <QPushButton>
+#include <QLabel>
+#include <mariadb/conncpp.hpp>
+#include <QTableWidget>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -16,9 +19,12 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    QLabel *getLabel();
+    void nouvellefenetre(sql::ResultSet*);
 
 private slots:
     void onConnexionClicked();  // Slot pour gérer le clic du bouton
+
 
 private:
     Ui::MainWindow *ui;
@@ -26,6 +32,8 @@ private:
     QLineEdit *mdp;
     QPushButton *bConnexion;
     QWidget *fenetre;
+    QLabel *lab;
+    QTableWidget *t;
 
 };
 

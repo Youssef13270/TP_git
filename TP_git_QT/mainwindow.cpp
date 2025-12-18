@@ -4,6 +4,9 @@
 #include <iostream>
 #include <QWidget>
 #include <QMessageBox>
+#include <QTableWidget>
+#include <QTableWidgetItem>
+#include <string>
 
 using namespace std;
 
@@ -16,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     log = new QLineEdit("", this);
     log->setPlaceholderText("Login");
     log->setGeometry(50, 50, 200, 30);
+
 
 
 
@@ -71,8 +75,15 @@ void MainWindow::onConnexionClicked()
             if (count > 0) {
                 QMessageBox::information(this, "Succès", "Connexion réussie!");
                 cout << "Utilisateur authentifié" << endl;
-                fenetre = new QWidget(this);
+
                 pstmt = conn->prepareStatement("SELECT id, prenom FROM bts_ciel2");
+                res = pstmt->executeQuery();
+                nouvellefenetre(res);
+
+
+
+
+
 
 
             } else {
@@ -102,4 +113,44 @@ MainWindow::~MainWindow()
     delete log;
     delete mdp;
     delete bConnexion;
+}
+
+QLabel * MainWindow::getLabel(){
+    return lab;
+}
+
+void MainWindow::nouvellefenetre(sql::ResultSet* res){
+    fenetre = new QWidget();
+    t = new QTableWidget(fenetre);
+    t->setRowCount(res->getFetchSize());
+    t->setColumnCount(2);
+
+    QString a ;
+    lab =new QLabel(fenetre);
+
+    this->hide();
+    cout<<"testr code"<<endl;
+    while (res->next()) {
+        int j=0;
+        int i=0;
+        QString id;
+        QString prenom;
+        id=(res->getString("id")) ;
+        prenom=(res->getString("prenom"));
+
+        string b;
+        string idl= id.toStdString();
+
+
+        t->setItem( i,j, new QTableWidgetItem(id,i));
+        t->setItem( i,j, new QTableWidgetItem(prenom(i));
+        i++;
+        j++;
+        cout << "id : " << res->getString("id") << endl;
+        cout << "prenom : " << res->getString("prenom") << endl;
+        //a = res->getString("prenom");
+        //lab->setText(a) ;
+        fenetre->show();
+    }
+
 }
